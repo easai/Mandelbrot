@@ -1,28 +1,11 @@
 //Mandelbrot.java  -- Draws the Mandelbrot set.
 
-//Copyright (c) 2013 easai
+//Copyright (c) 2013 - 2017 easai
 
 //Author: easai
 //Website: easai.web.fc2.com/homepage/javadev/Mandelbrot
 //Createid: Thu Dec 19 05:17:55 2013
 //Keywords: 
-
-//This file is not part of GNU Emacs.
-
-//Mandelbrot.java is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2, or (at your option)
-//any later version.
-
-//This software is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; see the file COPYING.  If not, write to the
-//Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//Boston, MA 02111-1307, USA.
 
 //Commentary:
 //This application draws either the Mandelbrot set and/or the sets that are not.
@@ -161,4 +144,4 @@ public class Mandelbrot extends JFrame implements MouseListener {
 	}
 }
 
-// Mandelbrot.java ends here
+
