@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<project basedir="." default="jar" name="DBAdmin">
+<project basedir="." default="jar" name="Mandelbrot">
 	<target name="jar" depends="build">
 		<jar jarfile="deps.jar">
 			<zipgroupfileset dir="lib">
