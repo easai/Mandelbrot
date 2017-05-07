@@ -14,7 +14,7 @@
 //
 //Code:
 
-package easai.math.Mandelbrot;
+package easai.math;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;

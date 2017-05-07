@@ -31,7 +31,7 @@
 
 //Code:
 
-package easai.math.Mandelbrot;
+package easai.math;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -40,7 +40,7 @@ import java.awt.Point;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import easai.math.Complex.Complex;
+import easai.math.Complex;
 
 /**
  * The <tt>Mandelbrot</tt> class draws the Mandelbrot set.
