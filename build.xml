@@ -11,7 +11,7 @@
 
 		<jar jarfile="Mandelbrot.jar" basedir="bin">
 			<manifest>
-				<attribute name="Main-Class" value="easai.math.Mandelbrot.Mandelbrot" />
+				<attribute name="Main-Class" value="easai.math.Mandelbrot" />
 			</manifest>
 			<zipfileset src="deps.jar" excludes="META-INF/*.SF" />
 		</jar>
