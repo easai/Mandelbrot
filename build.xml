@@ -17,7 +17,11 @@
 
 		<jar jarfile="Mandelbrot.jar" basedir="${dest.dir}">
 			<manifest>
+<<<<<<< HEAD
 				<attribute name="Main-Class" value="com.github.easai.math.Mandelbrot" />
+=======
+				<attribute name="Main-Class" value="easai.math.Mandelbrot" />
+>>>>>>> origin/master
 			</manifest>
 			<zipfileset src="deps.jar" excludes="META-INF/*.SF" />
 		</jar>
