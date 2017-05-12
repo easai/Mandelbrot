@@ -1,7 +1,7 @@
-package easai.math;
+package com.github.easai.math;
 
-import easai.math.Complex;
-import easai.math.MandelbrotPanel;
+import com.github.easai.math.MandelbrotPanel;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

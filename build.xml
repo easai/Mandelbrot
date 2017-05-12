@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<project basedir="." default="jar" name="Mandelbrot">
-	<target name="jar" depends="build">
+<project basedir="." default="jar" name="Complex">
+
+	<property name="source.dir" value="src" />
+	<property name="doc.dir" value="doc" />
+	<property name="dest.dir" value="bin" />
+
+	<target name="jar" depends="build, doc">
 		<jar jarfile="deps.jar">
 			<zipgroupfileset dir="lib">
 				<include name="*.jar" />
 			</zipgroupfileset>
+			<zipfileset dir="${doc.dir}" prefix="doc" />
 		</jar>
 		<sleep seconds="1" />
 
-		<jar jarfile="Mandelbrot.jar" basedir="bin">
+		<jar jarfile="Mandelbrot.jar" basedir="${dest.dir}">
 			<manifest>
-				<attribute name="Main-Class" value="easai.math.Mandelbrot.Mandelbrot" />
+				<attribute name="Main-Class" value="com.github.easai.math.Mandelbrot" />
 			</manifest>
 			<zipfileset src="deps.jar" excludes="META-INF/*.SF" />
 		</jar>
-
 	</target>
 	<target name="init">
-		<mkdir dir="bin" />
-		<copy includeemptydirs="false" todir="bin">
+		<mkdir dir="${dest.dir}" />
+		<copy includeemptydirs="false" todir="${dest.dir}">
 			<fileset dir="src">
 				<exclude name="**/*.launch" />
 				<exclude name="**/*.java" />
@@ -27,20 +32,27 @@
 		</copy>
 	</target>
 	<path id="classpath">
-		<pathelement location="bin" />
+		<pathelement location="${dest.dir}" />
 		<fileset dir="lib" includes="*.jar" />
 	</path>
 	<target depends="init" name="build">
-		<javac destdir="bin" includeantruntime="false">
-			<src path="src" />
+		<javac destdir="${dest.dir}" includeantruntime="false">
+			<src path="${source.dir}" />
 			<classpath refid="classpath" />
 		</javac>
-		<copy file="files/logback.xml" todir="bin" />
+		<copy file="files/logback.xml" todir="${dest.dir}" />
 	</target>
 	<target name="clean">
-		<delete dir="bin" />
+		<delete dir="${dest.dir}" />
 		<delete>
 			<fileset dir="." includes="*.jar" />
 		</delete>
+	</target>
+	<target name="doc" depends="init" description="generate documentation">
+		<delete dir="${doc.dir}" />
+		<mkdir dir="${doc.dir}" />
+		<javadoc destdir="${doc.dir}">
+			<fileset dir="${source.dir}/main" />
+		</javadoc>
 	</target>
 </project>

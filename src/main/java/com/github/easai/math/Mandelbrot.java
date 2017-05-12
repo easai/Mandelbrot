@@ -14,7 +14,7 @@
 //
 //Code:
 
-package easai.math;
+package com.github.easai.math;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
