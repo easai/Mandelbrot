@@ -2,7 +2,7 @@
 *.jar
 !lib/*
 bin
-.settings/
+.settings
 
 target/
 pom.xml.tag
