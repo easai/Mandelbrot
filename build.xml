@@ -53,6 +53,7 @@
 		<mkdir dir="${doc.dir}" />
 		<javadoc destdir="${doc.dir}">
 			<fileset dir="${source.dir}/main" />
+			<classpath refid="classpath" />
 		</javadoc>
 	</target>
 </project>
