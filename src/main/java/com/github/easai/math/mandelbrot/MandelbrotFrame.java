@@ -14,13 +14,31 @@
 //
 //Code:
 
-package com.github.easai.math;
+package com.github.easai.math.mandelbrot;
 
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Locale;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.easai.math.mandelbrot.MandelbrotMenu.MENUITEM;
 
 /**
  * The <tt>Mandelbrot</tt> class draws the Mandelbrot set.
@@ -29,7 +47,7 @@ import javax.swing.JFrame;
  * 
  * @author easai
  */
-public class Mandelbrot extends JFrame implements MouseListener {
+public class MandelbrotFrame extends JFrame implements MouseListener, ActionListener {
 	/**
 	 * 
 	 */
@@ -44,13 +62,17 @@ public class Mandelbrot extends JFrame implements MouseListener {
 	double r;
 	double step = .005;
 
+	Logger log = LoggerFactory.getLogger(this.getClass());
 	MandelbrotPanel panel = new MandelbrotPanel();
+	MandelbrotMenu menu = new MandelbrotMenu();
 
-	Mandelbrot() {
+	MandelbrotFrame() {
 		r = rx1 - rx0;
 		getContentPane().add(panel);
 		this.addMouseListener(this);
 		p1.x = -1;
+
+		menu.setMenu(this, this, Locale.US);
 
 		setSize(500, 500);
 		setTitle("Mandelbrot");
@@ -111,7 +133,8 @@ public class Mandelbrot extends JFrame implements MouseListener {
 			x0 = -(int) (rx0 * scale);
 			y0 = -(int) (ry0 * scale);
 
-			// System.out.println(String.format("[x: %f,%f] [y: %f,%f]",rx0,rx1,ry0,ry1));
+			// System.out.println(String.format("[x: %f,%f] [y:
+			// %f,%f]",rx0,rx1,ry0,ry1));
 		}
 
 		panel.p0 = p0;
@@ -133,15 +156,67 @@ public class Mandelbrot extends JFrame implements MouseListener {
 		f.setTitle("Mandelbrot");
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 	}
 
-	/**
-	 * Creates an instance of <tt>Mandelbrot</tt> and add it to a
-	 * <tt>JFrame</tt> class.
-	 */
-	public static void main(String args[]) {
-		Mandelbrot mandelbrot = new Mandelbrot();
+	public void copy(){
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		try {
+			Dimension size=panel.getSize();
+			BufferedImage image=new BufferedImage(size.width,size.height,BufferedImage.TYPE_INT_RGB);
+			panel.paint(image.createGraphics());
+			ImageSelection imgSel=new ImageSelection(image);
+			clipboard.setContents(imgSel, null);
+		} catch (Exception e) {
+			log.error("Error copying text:",e);
+		}
 	}
+	
+	public void about(){
+		JOptionPane.showMessageDialog(this, "Mandelbrot\nCopyright 2017 easai\nAll rights reserved.");
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		MENUITEM n = menu.comp.get(source);
+		if (n != null) {
+			switch (n) {
+			case nFileQuit:
+				dispose();
+				break;
+			case nEditCopy:
+				copy();
+				break;
+			case nHelpAbout:
+				about();
+				break;
+			}
+		}
+	}
+
+	class ImageSelection implements Transferable {
+		  private Image image;
+
+		  public ImageSelection(Image image) {
+		    this.image = image;
+		  }
+
+		  public DataFlavor[] getTransferDataFlavors() {
+		    return new DataFlavor[] { DataFlavor.imageFlavor };
+		  }
+
+		  public boolean isDataFlavorSupported(DataFlavor flavor) {
+		    return DataFlavor.imageFlavor.equals(flavor);
+		  }
+
+		  public Object getTransferData(DataFlavor flavor)
+		      throws UnsupportedFlavorException, IOException {
+		    if (!DataFlavor.imageFlavor.equals(flavor)) {
+		      throw new UnsupportedFlavorException(flavor);
+		    }
+		    return image;
+		  }
+		}
+		  
+	
 }
-
-

@@ -1,6 +1,6 @@
 package com.github.easai.math;
 
-import com.github.easai.math.MandelbrotPanel;
+import com.github.easai.math.mandelbrot.MandelbrotPanel;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

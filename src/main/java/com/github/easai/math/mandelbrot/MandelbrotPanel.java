@@ -7,23 +7,6 @@
 //Created: Thu Dec 19 05:17:55 2013
 //Keywords: 
 
-//This file is not part of GNU Emacs.
-
-//Mandelbrot.java is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2, or (at your option)
-//any later version.
-
-//This software is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; see the file COPYING.  If not, write to the
-//Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//Boston, MA 02111-1307, USA.
-
 //Commentary:
 //This application draws either the Mandelbrot set and/or the sets that are not.
 //
@@ -31,7 +14,7 @@
 
 //Code:
 
-package com.github.easai.math;
+package com.github.easai.math.mandelbrot;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -39,6 +22,8 @@ import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.github.easai.math.Complex;
 
 /**
  * The <tt>Mandelbrot</tt> class draws the Mandelbrot set.
