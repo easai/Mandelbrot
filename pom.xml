@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.2</version>
+			<version>1.2.13</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.easai.utils</groupId>
@@ -74,4 +74,3 @@
 		</plugins>
 	</build>
 </project>
-
